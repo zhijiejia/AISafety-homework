@@ -14,9 +14,7 @@ base_lr = 0.1
 os.system('rm ./runs/cifar10/*')
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 writer = SummaryWriter('runs/cifar10')
-print(22222)
 model = CifarNet(num_classes=10).cuda()
-print(33333)
 utils.setup_seed(2021)
 
 Train_transform = transforms.Compose([
@@ -51,8 +49,6 @@ schedulerTrain = scheduler.PolyLR(optimizer, max_iters=epoch * len(trainLoader),
 # schedulerTrain = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=100)                           # T_max是周期的1/2
 
 lossfun = nn.CrossEntropyLoss()
-
-print(11111)
 
 @torch.no_grad()
 def evaluate(e):
