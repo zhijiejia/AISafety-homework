@@ -12,7 +12,6 @@ from tools import scheduler, losses, ext_transforms, dataset, metric, utils
 epoch = 200
 base_lr = 0.1
 best_acc = 0
-#os.system('rm ./runs/cifar10/*')
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 writer = SummaryWriter('runs/cifar10-lr-contrastive')
 model = CifarNet(num_classes=10).cuda()

@@ -25,7 +25,7 @@ def split_weights(net):
 class CifarNet(nn.Module):
     def __init__(self, num_classes) -> None:
         super(CifarNet, self).__init__()
-        self.backbone = ResNet50()        
+        self.backbone = ResNet50()    
         self.fc = nn.Linear(in_features=2048, out_features=num_classes)
 
     def weight_init(self):

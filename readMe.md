@@ -55,6 +55,8 @@
 
 5. 训练轮数: 200 epoch
 
+6. 损失函数: 交叉熵损失
+
 6. 学习率更新方式: WarmUp + Poly
 
 7. 数据增强方式: RandomCrop、RandomHorizontalFlip、RandomRotation 
@@ -109,6 +111,7 @@ If you find the code or the models useful, please cite this paper:
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 ```
+
 
 ### License
 
