@@ -11,12 +11,11 @@ from tools import scheduler, losses, ext_transforms, dataset, metric, utils
 
 epoch = 200
 base_lr = 0.1
-os.system('rm ./runs/cifar10/*')
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-writer = SummaryWriter('runs/cifar10')
-print(22222)
+best_acc = 0
+#os.system('rm ./runs/cifar10/*')
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+writer = SummaryWriter('runs/cifar10-lr-contrastive')
 model = CifarNet(num_classes=10).cuda()
-print(33333)
 utils.setup_seed(2021)
 
 Train_transform = transforms.Compose([
@@ -48,14 +47,11 @@ optimizer = torch.optim.SGD(
 
 schedulerTrain = scheduler.PolyLR(optimizer, max_iters=epoch * len(trainLoader), power=0.9, warmUp=True)
 
-# schedulerTrain = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=100)                           # T_max是周期的1/2
-
 lossfun = nn.CrossEntropyLoss()
-
-print(11111)
 
 @torch.no_grad()
 def evaluate(e):
+    global best_acc
     model.eval()
     testMetric = metric.StreamSegMetrics(n_classes=10)
     labelName = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
@@ -73,6 +69,9 @@ def evaluate(e):
 
     result = testMetric.get_results()
     writer.add_scalar(tag='Acc', scalar_value=result['Acc'], global_step=e)
+    if best_acc < result['Acc']:
+        best_acc = result['Acc']
+        torch.save(model.state_dict(), './best_acc.pth')
     print(f'Acc Class:', result['Acc'])
 
 for e in range(epoch):
