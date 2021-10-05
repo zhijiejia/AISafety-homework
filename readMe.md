@@ -91,11 +91,9 @@ tensorboard --logdir runs
 
 ### 1. 检察初始loss是否合理
 
-  $$
-
-  交叉熵损失: loss = -log( \frac{exp(x[class])}{\sum_{j} exp(x[j])} )
-
-  $$
+  <div align=center>
+  <img src='./CrossEntropy.png' align="middle" />
+  </div>
 
     对于初始网络来说, 交叉熵损失应为 -log(0.1) = 2.3026,  实验训练结果发现, 本网络在初始时网络loss在2.3左右, 对于10分类问题来说, 符合交叉熵的理论初始损失值.
 
