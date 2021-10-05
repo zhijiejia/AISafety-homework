@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 from tools import scheduler, losses, ext_transforms, dataset, metric, utils
 
-epoch = 200
+epoch = 250
 base_lr = 0.1
 best_acc = 0
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -70,7 +70,7 @@ def evaluate(e):
     writer.add_scalar(tag='Acc', scalar_value=result['Acc'], global_step=e)
     if best_acc < result['Acc']:
         best_acc = result['Acc']
-        torch.save(model.state_dict(), './best_acc.pth')
+        torch.save(model.state_dict(), f'./best_acc_{best_acc}.pth')
     print(f'Acc Class:', result['Acc'])
 
 for e in range(epoch):

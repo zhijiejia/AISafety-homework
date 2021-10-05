@@ -3,26 +3,28 @@
 目录
 =================
 
-   * [Introduction](#introduction)
-   * [Installation](#installation)
-   * [Running Single-Image Tasks](#running-single-image-tasks)
-        * [Storing Representations](#storing-representations)
-        * [Storing Predictions](#storing-predictions)
-   * [Running Multi-Image Tasks](#running-multi-image-tasks)
-   * [Training Data Statistics](#training-data-statistics)
+   * [整体介绍](#整体介绍)
+   
+   * [文件结构](#文件结构)
+   
+   * [网络结构](#网络结构)
+   
+   * [训练细节](#训练细节)
+   
+   * [开始训练](#开始训练)
+   
+   * [实验过程](#实验过程)
+   
+   * [网络最终实验结果](#网络最终实验结果)
+   
    * [Citing](#citing)
-
-
-<div align="center">
-  <img src="assets/web_assets/task_dict_v.jpg" />
-</div>
 
 ---
 
 ## **整体介绍**
-1. 此仓库存放了人工智能安全课程第二次课程作业，搭建分类神经网络在Cifar10公开数据集上完成分类任务
+1. 此仓库存放了2021秋季人工智能安全课程第一次课程作业，搭建分类神经网络在 Cifar10 公开数据集上完成分类任务
 
-2. 本次作业最终在Cifar10测试集上取得了94.3%的top-1分类准确度
+2. 本次作业最终在 Cifar10 测试集上取得了 94.3% 的 top-1 分类准确度
 
 ---
 
@@ -50,7 +52,7 @@
 
 1. 本次作业的整体网络由 主干特征提取网络 + 特征分类网络 组成
 
-2. 主干提取网络采用ResNet50, 并修改最后的全局池化层, 将全局池化为 1 像素, 改为全局池化为 4 像素, 保留了更多的图像特征
+2. 主干提取网络采用ResNet50, 并修改最后的池化层, 将池化从全局池化操作, 改为卷积核为4像素大小的池化操作, 保留了更多的图像特征, 更加有益于分类器进行类别分类
 
 3. 特征分类网络采用线性层, 完成特征分类映射
 
@@ -89,7 +91,13 @@ tensorboard --logdir runs
 
 ### 1. 检察初始loss是否合理
 
-    实验训练结果发现, 网络初始loss在2.3左右, 对于10分类问题来说, 交叉熵的理论初始损失值
+  $$
+
+  交叉熵损失: loss = -log( \frac{exp(x[class])}{\sum_{j} exp(x[j])} )
+
+  $$
+
+    对于初始网络来说, 交叉熵损失应为 -log(0.1) = 2.3026,  实验训练结果发现, 本网络在初始时网络loss在2.3左右, 对于10分类问题来说, 符合交叉熵的理论初始损失值.
 
 ### 2. 训练参数网格搜索
     
@@ -130,9 +138,26 @@ tensorboard --logdir runs
 ### 4. 网络超参数选取结果
 
 根据步骤3中的实验结果, 选取 base_lr: 0.01, 优化器: SGD, weight decay: 5e-4, 作为网络的最终超参数, 进行5次实验, 计算每次模型的最优平均值与方差
+|Index     |Acc      |
+|:---------|:-------:|
+|1         |66.32    |
+|2         |69.40    |
+|3         |59.61    |
+|4         |32.70    |
+|5         |33.29    |
+
+|Mean      |Var      |
+|:---------|:-------:|
+|         |    |
 
 ---
 ## **网络最终实验结果**
+|Acc     |百度网盘      |
+|:-------|:-----------:|
+|        |             |
+
+## **网络预训练权重**
+
 
 ---
 ## Citing
@@ -145,15 +170,8 @@ If you find the code or the models useful, please cite this paper:
                Shaoqing Ren and
                Jian Sun},
   title     = {Deep Residual Learning for Image Recognition},
-  journal   = {CoRR},
   volume    = {abs/1512.03385},
   year      = {2015},
-  url       = {http://arxiv.org/abs/1512.03385},
-  eprinttype = {arXiv},
-  eprint    = {1512.03385},
-  timestamp = {Wed, 17 Apr 2019 17:23:45 +0200},
-  biburl    = {https://dblp.org/rec/journals/corr/HeZRS15.bib},
-  bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 ```
 
