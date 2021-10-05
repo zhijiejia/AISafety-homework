@@ -12,7 +12,7 @@ from tools import scheduler, losses, ext_transforms, dataset, metric, utils
 
 
 param_grid = {
-            'base_lr': [0.1, 0.01, 0.001],
+            'base_lr': [0.1, 0.01, 0.001]
             'weight_decay': [1e-4, 5e-4, 1e-3],
             'optimizer': ['SGD', 'Adam'],
         }
@@ -20,7 +20,7 @@ param_grid = {
 param_acc = dict()
 
 for param in list(ParameterGrid(param_grid)):
-    epoch = 100
+    epoch = 100    # 设置epoch为最终想要设置的epoch很重要, 因为如果这里的epoch设置为10的话, 那么会导致学习率下降的很快, 而且与最终训练的学习率下降方式回不同, 整体只有10轮的肯定比整体有100轮的下降更快, 所以如果将epoch设置为10的话, 就不能保证, 测试得到的较好的参数, 在最终训练的时候也还是较好的参数, 因为学习率变化速度改变了, 这隐形的引入一个不确定性, 因此一定要将epoch设置为100轮(最终要训练的轮次, 最起码差不多)
     best_acc = 0
     base_lr = param['base_lr']
     weight_decay = param['weight_decay']
@@ -119,6 +119,9 @@ for param in list(ParameterGrid(param_grid)):
             optimizer.step()
             schedulerTrain.step()
 
+        if AvgLoss / iters > 1e10:
+            print('函数损失过大, 无法拟合, ','best_acc: ', best_acc)
+            break
         writer.add_scalar(tag='Train Avg Loss', scalar_value=AvgLoss / iters, global_step=e)
 
         evaluate(e)
