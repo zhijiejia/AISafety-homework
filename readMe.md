@@ -30,22 +30,33 @@
 
 ## **文件结构**
     .
-    ├── Cifar10_struct.png
-    ├── __init__.py
+    ├── imgs
+    │   ├── Acc.svg
+    │   ├── confuse_matrix.png
+    │   ├── CrossEntropy.png
+    │   └── lineplot.png
     ├── net
-    │   ├── CifarNet.py
-    │   └── ResNet.py
+    │   ├── CifarNet.py
+    │   └── ResNet.py
+    ├── plotConfuseMatrix.py
     ├── readMe.md
-    ├── test_parameter_grad_search.py
+    ├── requirements.txt
     ├── test.py
-    └── tools
-        ├── dataset.py
-        ├── ext_transforms.py
-        ├── losses.py
-        ├── metric.py
-        ├── scheduler.py
-        ├── utils_bn.py
-        └── utils.py
+    ├── tools
+    │   ├── dataset.py
+    │   ├── ext_transforms.py
+    │   ├── losses.py
+    │   ├── metric.py
+    │   ├── scheduler.py
+    │   ├── utils_bn.py
+    │   └── utils.py
+    ├── train_data
+    │   ├── plotImg.py
+    │   ├── run-0-tag-Acc.csv
+    │   ├── run-1-tag-Acc.csv
+    │   ├── run-2-tag-Acc.csv
+    │   ├── run-3-tag-Acc.csv
+    │   └── run-4-tag-Acc.csv
 
 ---
 ## **网络结构**

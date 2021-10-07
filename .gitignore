@@ -9,4 +9,4 @@ cifar-10-batches-py/
 
 *.pth
 
-test_*.py
+test_5.py
