@@ -10,7 +10,7 @@ import torchvision.transforms as transforms
 from tools import scheduler, losses, ext_transforms, dataset, metric, utils
 
 epoch = 250
-base_lr = 0.1
+base_lr = 0.01
 best_acc = 0
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 writer = SummaryWriter('runs/cifar10-lr-contrastive')
