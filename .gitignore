@@ -8,3 +8,5 @@ runs/
 cifar-10-batches-py/
 
 *.pth
+
+test_*.py

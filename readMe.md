@@ -81,6 +81,8 @@
 ---
 ## **开始训练**
 ```
+pip install -r requirement.txt
+
 python test.py
 
 tensorboard --logdir runs
