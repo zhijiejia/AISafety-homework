@@ -9,14 +9,14 @@ from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 from tools import scheduler, losses, ext_transforms, dataset, metric, utils
 
-for num in range(5, 7):
+for num in range(10, 13):
     epoch = 250
-    base_lr = 0.01
+    base_lr = 0.1
     best_acc = 0
     os.environ["CUDA_VISIBLE_DEVICES"] = "2"
     writer = SummaryWriter(f'runs/cifar10_test_for_mean_var/{num}/')
     model = CifarNet(num_classes=10).cuda()
-    utils.setup_seed(2021)
+    #utils.setup_seed(2021)
 
     Train_transform = transforms.Compose([
         transforms.ToPILImage(),
@@ -45,7 +45,7 @@ for num in range(5, 7):
         weight_decay=5e-4,
     )
 
-    schedulerTrain = scheduler.PolyLR(optimizer, max_iters=epoch * len(trainLoader), power=0.9, warmUp=True)
+    schedulerTrain = scheduler.PolyLR(optimizer, max_iters=(epoch-50) * len(trainLoader), power=0.9, warmUp=True)
 
     lossfun = nn.CrossEntropyLoss()
 
