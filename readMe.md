@@ -126,7 +126,7 @@ tensorboard --logdir runs
     
 ### 3. 各个参数组合实验结果
 
-|Base_lr       |Optimizer      |Weight Decay   |Acc       |
+|**Base_lr**   |**Optimizer**  |**Weight Decay** |**Acc** |
 |:------------:|:-------------:|:-------------:|:--------:|
 |0.1           |SGD            |1e-4           |66.32%    |
 |0.1           |SGD            |5e-4           |69.40%    |
