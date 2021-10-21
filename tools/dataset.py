@@ -1,4 +1,5 @@
 import os
+import random
 import torch
 import pickle
 import numpy as np
@@ -15,6 +16,7 @@ class CifarDataset(data.Dataset):
         self.images = []
         self.labels = []
         self.transform = transform
+        self.noise = np.random.randint(-5, 5, size=(32, 32, 3))
         
         if train:
             for index in range(5):
@@ -36,7 +38,13 @@ class CifarDataset(data.Dataset):
 
         image = self.images[index]
         label = self.labels[index]
+        
+        if random.random() < 0.5:
+            image = image + np.random.randint(-1, 2, size=1)[0] * self.noise
+            image = np.uint8(image)
+
         image = self.transform(image)
+
         return image, label
 
     def __len__(self):

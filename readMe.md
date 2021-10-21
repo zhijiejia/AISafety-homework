@@ -180,6 +180,11 @@ tensorboard --logdir runs
   <div align=center>
     <img src='./imgs/confuse_matrix.png' align="middle" width=800px, height=600px />
   </div>
+---
+模型的分类错误结果展示，如下图所示
+<div align=center>
+  <img src='./imgs/error.png' align="middle" width=800px, height=600px />
+</div>
 
 ---
 
