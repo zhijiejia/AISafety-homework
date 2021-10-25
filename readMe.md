@@ -188,7 +188,11 @@ tensorboard --logdir runs
 </div>
 
 ---
+<div align=center>
+  <img src='./imgs/tnse.png' align="middle" width=800px, height=600px />
+</div>
 
+---
 ## **网络预训练权重**
 |Acc     |百度网盘      |
 |:-------|:-----------:|
