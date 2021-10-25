@@ -188,8 +188,9 @@ tensorboard --logdir runs
 </div>
 
 ---
+模型预测的tsne可视化结果图
 <div align=center>
-  <img src='./imgs/tnse.png' align="middle" width=800px, height=600px />
+  <img src='./imgs/tsne.png' align="middle" width=800px, height=600px />
 </div>
 
 ---
